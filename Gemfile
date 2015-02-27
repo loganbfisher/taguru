@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.1.1'
 gem 'rails', '4.1.0'
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
@@ -14,6 +14,8 @@ gem 'figaro', :github=>"laserlemon/figaro"
 gem 'foundation-rails'
 gem 'mysql2'
 gem 'slim-rails'
+gem 'rest-client'
+gem 'soundcloud'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :mri_21, :rbx]
@@ -23,10 +25,12 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
-  gem 'unicorn'
-  gem 'unicorn-rails'
+  gem 'rspec-expectations'
+  gem 'pry'
+  gem 'thin'
 end
 group :test do
+  gem 'webmock', :require=>false
   gem 'capybara'
   gem 'cucumber-rails', :require=>false
   gem 'database_cleaner', '1.0.1'

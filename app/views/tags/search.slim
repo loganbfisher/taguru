@@ -1,7 +1,8 @@
-h3 Home
 - if @current_instagram_user.nil?
   a href="https://api.instagram.com/oauth/authorize/?client_id=#{ENV["INSTAGRAM_CLIENT_ID"]}&redirect_uri=#{ENV["INSTAGRAM_REDIRECT_URL"]}&response_type=code"
     span Login with instagram
+- else
+  p You are already logged in through instagram.
 
 = form_tag search_tags_path, method: :get
   .row.collapse
@@ -13,13 +14,12 @@ h3 Home
       = submit_tag('Go', :class => 'button postfix')
 
 - if @tags.present?
-  .row.collapse
-    .large-8.columns.large-centered
-      - @tags.each do |tag|
-        .large-12.columns
-          h3 = tag['hashtag']
-          = image_tag tag['images']['standard_resolution']['url']
+  = form_tag tags_path, method: :post
+    = hidden_field_tag :hashtag, params[:query]
+    = submit_tag('Save Current Hashtag', :class => 'button')
+  - @tags['data'].each do |tag|
+    .large-3.columns = image_tag tag['images']['standard_resolution']['url']
 
-  /= form_tag search_tags_path, method: :get
-  /  = hidden_field_tag :next_page_url, @tags['pagination']['next_url']
-  /  = submit_tag('Next Page', :class => 'button')
+  = form_tag search_tags_path, method: :get
+    = hidden_field_tag :next_page_url, @tags['pagination']['next_url']
+    = submit_tag('Next Page', :class => 'button')
