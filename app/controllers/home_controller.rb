@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
+  include DetailedHashtagsAdapterInjector
 
   def index
-    @tags = TagsAdapter.get_followed_tags(current_user, current_access_token)
+    @tags = detailed_hashtags_adapter.followed_data
   end
 
 end

@@ -1,12 +1,17 @@
 class Api::TagsController < Api::ApiController
-  include TagsServiceInjector
+  include DetailedHashtagsAdapterInjector
+  include InstagramTagRepoInjector
 
   def index
-    render json: tags_service.followed
+    render json: detailed_hashtags_adapter.followed_data
   end
 
   def create
-    render json: tags_service.create(params)
+    render json: HashtagRepo.new.create(params)
+  end
+
+  def search
+    render json: instagram_tag_repo.search(params)
   end
 
 end
