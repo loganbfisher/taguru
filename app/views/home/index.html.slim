@@ -1,7 +1,4 @@
 h3 Home
-- if @current_instagram_user.nil?
-  a href="https://api.instagram.com/oauth/authorize/?client_id=#{ENV["INSTAGRAM_CLIENT_ID"]}&redirect_uri=#{ENV["INSTAGRAM_REDIRECT_URL"]}&response_type=code"
-    span Login with instagram
 
 = form_tag search_tags_path, method: :get
   .row.collapse

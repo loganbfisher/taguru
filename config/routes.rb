@@ -9,12 +9,25 @@ Taguru::Application.routes.draw do
     end
   end
 
+  namespace :instagram do
+    namespace :sessions do
+      delete 'delete', action: :destroy
+    end
+  end
+
   namespace :api do
     resources :tags, only: [:index, :create] do
       collection do
         get 'search/:query', action: :search, as: :search
       end
     end
+
+    namespace :instagram do
+      resources :sessions, only: [:create] do
+        delete :delete, action: :destroy
+      end
+    end
+
   end
 
 end
