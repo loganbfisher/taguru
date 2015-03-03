@@ -37,7 +37,7 @@ production:
   database: taguru_production
   username: b0dbab10d22967
   password: 7f660458
-  host: taguru.herokuapp.com
+  host: localhost
 
 cucumber:
   <<: *test
