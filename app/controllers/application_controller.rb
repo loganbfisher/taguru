@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :authenticate_user!
   before_filter :check_instagram_auth
-  before_filter :current_instagram_token
 
   include InstagramAuthRepoInjector
 
@@ -17,6 +16,7 @@ class ApplicationController < ActionController::Base
   def current_instagram_token
     @current_instagram_token ||= current_user.instagram_access_token
   end
+  helper_method :current_instagram_token
 
   def current_user_tags
     Hashtag.where(user_id: current_user.id)
