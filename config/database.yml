@@ -34,12 +34,10 @@ test: &test
 production:
   adapter: mysql2
   encoding: utf8
-  reconnect: false
   database: taguru_production
-  pool: 5
-  username: taguru-admin
-  password: Red285977!
-  host: localhost
+  username: b0dbab10d22967
+  password: 7f660458
+  host: mysql://b0dbab10d22967:7f660458@us-cdbr-iron-east-01.cleardb.net/heroku_01519a8cfa68542?reconnect=true
 
 cucumber:
   <<: *test
