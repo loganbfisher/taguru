@@ -1,22 +1,37 @@
-h3 Home
+.row
+  .large-3.columns
+    h4 Followed tags
+    ul.side-nav
+      - current_user_tags.each do |tag|
+        li.clearfix
+          = link_to "X", tag_delete_path(tag), :data => { :confirm => "Are you sure?" }, :method => :delete, class: 'right', style: 'padding: 0; padding-right: 20px; margin: 0; color: #cccccc;'
+          strong.left = tag.name
 
-= form_tag search_tags_path, method: :get
-  .row.collapse
-    .small-1.large-1.columns
-      span.prefix #
-    .small-9.large-9.columns
-      = text_field_tag :hashtag, nil, :placeholder => 'Enter a hashtag to follow....'
-    .small-2.large-2.columns
-      = submit_tag('Go', :class => 'button postfix')
+  .large-7.columns
+    = form_tag search_tags_path, method: :get
+      .panel
+        .row.collapse
+          .small-1.large-1.columns
+            span.prefix #
+          .small-9.large-9.columns
+            = text_field_tag :hashtag, nil, :placeholder => 'Enter a hashtag to follow....', style: 'margin-bottom: 0;'
+          .small-2.large-2.columns
+            = submit_tag 'Go', :class => 'button postfix', style: 'margin-bottom: 0;'
+    - if @tags.present?
+      .row
+        - @tags.each do |tag|
+          .large-12.columns
+            .panel
+              .row
+                .large-12.columns
+                  h3 = tag['hashtag']
+                .large-12.columns
+                  = image_tag tag['images']['standard_resolution']['url']
 
-- if @tags.present?
-  .row.collapse
-    .large-8.columns.large-centered
-      - @tags.each do |tag|
-        .large-12.columns
-          h3 = tag['hashtag']
-          = image_tag tag['images']['standard_resolution']['url']
+  .large-2.columns
 
-  /= form_tag search_tags_path, method: :get
-  /  = hidden_field_tag :next_page_url, @tags['pagination']['next_url']
-  /  = submit_tag('Next Page', :class => 'button')
+
+
+/= form_tag search_tags_path, method: :get
+/  = hidden_field_tag :next_page_url, @tags['pagination']['next_url']
+/  = submit_tag('Next Page', :class => 'button')

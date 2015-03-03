@@ -17,4 +17,10 @@ class TagsController < ApplicationController
     redirect_to tags_path(params)
   end
 
+  def destroy
+    Hashtag.where(user_id: current_user.id, id: params[:tag_id]).first.destroy
+
+    redirect_to root_path
+  end
+
 end

@@ -2,16 +2,12 @@
 nav.top-bar[data-topbar]
   ul.title-area
     li.name
-      = link_to 'Home', root_path
-    li.toggle-topbar.menu-icon
-      a[href="#"]
-        Menu
+      h4 = link_to 'Taguru', root_path
   .top-bar-section
-    ul
+    ul.right
       - if user_signed_in?
         li = link_to 'Edit account', edit_user_registration_path
         li = link_to 'Logout', destroy_user_session_path, :method=>'delete'
-        li = current_user.email
       - else
         li = link_to 'Login', new_user_session_path
         li = link_to 'Sign up', new_user_registration_path

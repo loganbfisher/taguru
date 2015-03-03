@@ -4,6 +4,7 @@ Taguru::Application.routes.draw do
   resources :users
 
   resources :tags, only: [:index, :create] do
+    delete 'delete', action: :destroy
     collection do
       get 'search', action: :search, as: :search
     end
